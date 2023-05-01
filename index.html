@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css" />
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/notie/dist/notie.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="main_div">
+    <div class="header">
+      <h1 class="text">Choose New Password</h1>
+      <h4 class="text1">
+        Almost done. Enter your New Password and you are all set
+      </h4>
+    </div>
+
+
+    <div class="paaswordbox">
+      <form name="myForm">
+
+        <input class="inputfield" type="text" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+          placeholder="Enter your password" id="passbox1" onkeyup="check()">
+
+        <div class="confirmpass">
+          <input class="inputfield" type="password" placeholder="Confirm your password" id="passbox">
+          <img class="eyeimage" src="eye-close.png" alt="" srcset="" id="eye" onclick="change()">
+        </div>
+        <div class="maindiv">
+          <div id="lower" class="invalid">
+            <i class="fa fa-check-circle" style="font-size:24px"></i>
+            <span>One Lowercase character</span>
+          </div>
+          <div id="upper" class="invalid">
+            <i class="fa fa-check-circle" style="font-size:24px"></i>
+            <span>One Uppercase character</span>
+          </div>
+          <div id="number" class="invalid">
+            <i class="fa fa-check-circle" style="font-size:24px"></i>
+            <span>One Number </span>
+          </div>
+          <div id="eightlen" class="invalid">
+            <i class="fa fa-check-circle" style="font-size:24px"></i>
+            <span>8 character Minimum</span>
+          </div>
+          <div id="special" class="invalid">
+            <i class="fa fa-check-circle" style="font-size:24px"></i>
+            <span>One special character</span>
+          </div>
+        </div>
+    </div>
+
+    <button class="submit" type="submit" onclick="work()">submit</button>
+    </form>
+
+  </div>
+  </div>
+  <script>let isvisible = true;
+    var input = document.getElementById("passbox");
+
+    function change() {
+      let eye = document.getElementById("eye")
+
+      if (isvisible) {
+        input.type == "password";
+        input.setAttribute('type', 'text')
+        isvisible = false;
+        eye.src = "eye-open.png"
+
+      }
+
+      else {
+        input.type = "text";
+        isvisible = true;
+        input.setAttribute('type', 'password')
+        eye.src = "eye-close.png"
+
+      }
+
+
+
+    }
+
+
+
+
+    let myInput = document.getElementById("passbox1");
+    let letter = document.getElementById("lower")
+    let capital = document.getElementById("upper");
+    let number = document.getElementById("number");
+    let lengths = document.getElementById("eightlen");
+    let specialchar = document.getElementById("special");
+
+
+
+
+    function check() {
+
+      let lowerCaseLetters = /[a-z]/g;
+      if (myInput.value.match(lowerCaseLetters)) {
+        console.log("match")
+        letter.style.color = "green"
+      } else {
+        letter.style.color = "red"
+      }
+
+      let Uppercaseletter = /[A-Z]/g;
+      if (myInput.value.match(Uppercaseletter)) {
+        capital.style.color = "green"
+
+      } else {
+        capital.style.color = "red"
+
+      }
+
+      let numbers = /[0-9]/g;
+      if (myInput.value.match(numbers)) {
+        number.style.color = "green"
+
+      } else {
+        number.style.color = "red"
+
+      }
+
+
+      if (myInput.value.length >= 8) {
+
+        lengths.style.color = "green"
+
+      } else {
+        lengths.style.color = "red"
+
+      }
+      let special = /[^A-Za-z 0-9]/g
+      if (myInput.value.match(special)) {
+
+        specialchar.style.color = "green"
+
+
+      } else {
+        specialchar.style.color = "red"
+
+      }
+
+    }
+
+
+    function work() {
+
+      if (input.value === myInput.value) {
+        notie.force({
+  type: Number|String, // optional, default = 5, enum: [1, 2, 3, 4, 5, 'success', 'warning', 'error', 'info', 'neutral']
+  text: String,
+  buttonText: String, // optional, default = 'OK'
+  position: String, // optional, default = 'top', enum: ['top', 'bottom']
+  callback: Function // optional
+})
+      }
+      else {
+      }
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </script>
+    <script src="https://unpkg.com/notie"></script>
+</body>
+<!-- </html> -->
